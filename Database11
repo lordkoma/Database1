@@ -1,0 +1,32 @@
+FIRST QUESTION
+
+select first_name, last_name, department_id, salary 
+from employees 
+where salary > 8000;
+
+SECOND QUESTION
+
+select first_name || ' ' || last_name as "FULL_NAME" 
+from employees 
+where salary > (select salary from employees where employee_id = 163);
+
+THIRD QUESTION
+
+select employee_id, first_name || ' ' || last_name as "FULL_NAME" 
+from employees
+where salary > (select avg(salary) from employees);
+
+FORTH QUESTION
+
+
+select e.first_name || ' ' || e.last_name as "EMPLOYEE NAME", e.hire_date as "EMPLOYEE HIRE DATE", m.first_name || ' ' || m.last_name as  "MANAGER NAME", m.hire_date as "MANAGER HIRE DATE"
+from employees e join employees m 
+on e.manager_id = m.employee_id 
+where e.hire_date < m.hire_date;
+
+FIFTH QUESTION
+
+select employee_id, last_name, salary 
+from employees
+where salary > (select avg(salary) from employees)
+and department_id in (select department_id from employees where last_name like '%u%');
